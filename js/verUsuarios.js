@@ -7,7 +7,7 @@ function carregar() {
     let nomeUsuario = localStorage.getItem("nomeDeUsuario");
     console.log(nomeUsuario);
     if (getCookie(nomeUsuario) != null && nomeUsuario != null) {
-        document.getElementById("pegarUsuarios").addEventListener("click", pegarUsuarios);
+        document.getElementById("btnUsuarios").addEventListener("click", pegarUsuarios);
 
     } else {
         alert("Você não fez login! Retornando a página de login!")
@@ -33,31 +33,52 @@ function getCookie(nomeCookie) {
 }
 
 
+function addRow(tableID, usuarioInserido) {
+  // Get a reference to the table
+  let tableRef = document.getElementById("tabelaUsers");
+
+  // Insert a row at the end of the table
+  let newRow = tableRef.insertRow(-1);
+
+  // Insert a cell in the row at index 0
+  let newCell = newRow.insertCell(0);
+
+  // Append a text node to the cell
+  let newText = document.createTextNode(usuarioInserido);
+  newCell.appendChild(newText);
+}
+
+
+
+
 function pegarUsuarios(event){
+   
+    event.preventDefault();
 
     let nomeUsuario = localStorage.getItem("nomeDeUsuario");
     let tokenAut = getCookie(nomeUsuario);
+    var request = new XMLHttpRequest();
+    console.log(tokenAut)
 
-    fetch('http://138.197.78.0/users', {
-    method: 'GET',
-    contentType: 'application/json',
-    headers: {
-        "Authorization": tokenAut
-            }
-    })
-    .then(
-    
-    resultado => {
-        if(resultado.status == 200){
-           console.log(resultado.headers);
-        }else if(resultado.status == 403){
-            alert("Erro!");
-        }
+    request.open(  'GET','http://138.197.78.0/users', true)
+
+    request.setRequestHeader("Authorization", tokenAut);
+  
+  
+    request.onload = function() {
+    var data = JSON.parse(this.response)
+  
+    if (request.status == 200) {
+      data.forEach(usuarios => {
+        console.log(usuarios)
+        addRow('my-table', usuarios.username);
+      })
+    } else {
+      console.log('error')
     }
 
-)
-.catch(error => {
-    console.log(error);
-})
+  }
+ 
+  request.send()
 
 }
