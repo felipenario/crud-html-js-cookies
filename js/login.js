@@ -1,26 +1,25 @@
+
+
 var checagemPagina = false;
-var nomeUsuario = "";
-
-window.addEventListener("load", checar);
-
-function checar(){
-
-    console.log(tokenAcesso);
-
-}
 
 
 if(userLogin != undefined){
-
+    
+   
+    
     checagemPagina = true;
-
+    
 }else{
     checagemPagina = false;
+    
 }
 
-    if(checagemPagina == true){
+if(checagemPagina == true){
+  
     userLogin.addEventListener("submit", fazerLogin);
+   
 }
+
 
 function fazerLogin(event) {
     event.preventDefault();
@@ -28,7 +27,6 @@ function fazerLogin(event) {
     let formulario = document.forms["userLogin"];
     let password = formulario.password.value;
     let username = formulario.username.value;
-    nomeUsuario = username;
 
     let login = {
         "password": password,
@@ -43,7 +41,7 @@ function fazerLogin(event) {
             }
         })
         .then(
-
+           
             resultado => {
                 
                 if(resultado.status == 200){
@@ -55,12 +53,18 @@ function fazerLogin(event) {
                     console.log("Token", resultado.headers.get("Authorization"))
                     let tokenAcesso = resultado.headers.get("Authorization");  
                     setCookie(username, tokenAcesso, 30);
-                    window.location.href = "controle.html";
+                    localStorage.setItem("nomeDeUsuario", username);
+                    window.location.href = "controle.html"
+                    
+                  
                     
                 }else{
                     alert("Erro ao realizar login!")
                 }
             },
+
+            
+            
 
             
 
@@ -80,12 +84,16 @@ function fazerLogin(event) {
         })
 
 
+
+    }
+
 function setCookie(cname,cvalue,exdays) {
      var d = new Date();
      d.setTime(d.getTime() + (exdays*24*60*60*1000));
      var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
  
-} 
-
 }
+
+
+

@@ -1,10 +1,12 @@
 window.addEventListener("load", carregar);
 
-var cookie = getCookie("felipehawk");
-console.log(cookie)
+
 
 function carregar() {
+    let nomeUsuario = localStorage.getItem("nomeDeUsuario");
+    console.log(nomeUsuario);
     if (getCookie(nomeUsuario) != null) {
+        console.log(nomeUsuario)
         document.getElementById("btnverUsuarios").addEventListener("click", verUsuarios);
         document.getElementById("btnbuscarUsuario").addEventListener("click", buscarUsuarios);
         document.getElementById("btneditarUsuarios").addEventListener("click", editarUsuarios);
