@@ -86,61 +86,6 @@ function editarUsuario(event){
 
 }
 
-/*function editarUsuario(event){
-   
-    event.preventDefault();
-
-    let nomeUsuario = localStorage.getItem("nomeDeUsuario");
-    let tokenAut = getCookie(nomeUsuario);
-    let idUsuario = document.getElementById("usernameID").value;
-    var request = new XMLHttpRequest();
-    console.log(tokenAut) 
-    let editarUser = document.forms["editarUsuarios"];
-    let cpf = editarUser.cpf.value;
-    let email = editarUser.email.value;
-    let nome = editarUser.nome.value;
-    let username = editarUser.username.value;
-
-
-    let newUser = {
-        "cpf": cpf,
-        "email": email,
-        "fullname": nome,
-        "username": username
-    };
-
-    var novoUsuario = JSON.stringify(newUser);
-
-    request.open('PUT','http://138.197.78.0/users/' + idUsuario, true)
-
-    request.setRequestHeader("Authorization", tokenAut);
-
-    request.send()
-
-    request.setRequestHeader('Content-type','application/json; charset=utf-8');
-  
-  
-    request.onload = function() {
-    var data = JSON.parse(this.response)
-  
-    if (request.status == 200) {
-    
-        alert("Usuário editado com sucesso!")
-      
-    } else if(request.status == 403){
-      alert("Não autorizado! Por favor envie seu token de acesso")
-    }else if(request.status == 404){
-      alert("Usuário não encontrado!")
-    }else{
-      console.log(request.status)
-    }
-
-  }
-  request.send(newUser)
-
-}
-*/
-
 function pegarUsuarios(event){
    
   event.preventDefault();
