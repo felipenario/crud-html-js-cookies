@@ -5,7 +5,7 @@ window.addEventListener("load", carregar);
 function carregar() {
     let nomeUsuario = localStorage.getItem("nomeDeUsuario");
     console.log(nomeUsuario);
-    if (getCookie(nomeUsuario) != null) {
+    if (getCookie(nomeUsuario) != null && nomeUsuario != null) {
         console.log(nomeUsuario)
         document.getElementById("btnverUsuarios").addEventListener("click", verUsuarios);
         document.getElementById("btnbuscarUsuario").addEventListener("click", buscarUsuarios);
@@ -13,7 +13,8 @@ function carregar() {
         document.getElementById("btndeletarUsuarios").addEventListener("click", deletarUsuarios);
 
     } else {
-        window.location.href = "login.html";
+        alert("Você não fez login! Retornando a página de login!")
+        window.location.href = "index.html";
     }
 }
 
