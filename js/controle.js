@@ -11,12 +11,30 @@ function carregar() {
         document.getElementById("btnbuscarUsuario").addEventListener("click", buscarUsuarios);
         document.getElementById("btneditarUsuarios").addEventListener("click", editarUsuarios);
         document.getElementById("btndeletarUsuarios").addEventListener("click", deletarUsuarios);
-
+        document.getElementById("btnLogout").addEventListener("click", fazerLogout);
     } else {
         alert("Você não fez login! Retornando a página de login!")
         window.location.href = "index.html";
     }
 }
+
+
+function fazerLogout(){
+    let nomeUsuario = localStorage.getItem("nomeDeUsuario");
+    apagarCookie(nomeUsuario);
+    localStorage.removeItem("nomeDeUsuario");
+    alert("Logout feito com sucesso! Retornando a tela de login!")
+    window.location.href = "index.html";
+  
+
+}
+
+
+function apagarCookie(nome) {
+  let data = new Date("01/01/1970");
+  document.cookie = nome = "=" + ";expires=" + data.toUTCString();
+}
+
 
 
 function getCookie(nomeCookie) {
