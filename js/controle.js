@@ -44,18 +44,18 @@ function verUsuarios(event) {
 
 function buscarUsuarios(event) {
 
-    window.location.href = "verUsuarios.html"
+    window.location.href = "verUsuariosID.html"
     
 }
 
 function editarUsuarios(event) {
 
-    window.location.href = "verUsuarios.html"
+    window.location.href = "editarUsuarios.html"
     
 }
 
 function deletarUsuarios(event) {
 
-    window.location.href = "verUsuarios.html"
+    window.location.href = "excluirUsuarios.html"
     
 }

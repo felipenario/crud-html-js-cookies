@@ -7,7 +7,7 @@ function carregar() {
     let nomeUsuario = localStorage.getItem("nomeDeUsuario");
     console.log(nomeUsuario);
     if (getCookie(nomeUsuario) != null && nomeUsuario != null) {
-        document.getElementById("btnUsuarios").addEventListener("click", pegarUsuarios);
+        document.getElementById("btnUsuarios").addEventListener("click", excluirUsuario);
 
     } else {
         alert("Você não fez login! Retornando a página de login!")
@@ -33,7 +33,8 @@ function getCookie(nomeCookie) {
 }
 
 
-function pegarUsuarios(event){
+
+function excluirUsuario(event){
    
     event.preventDefault();
 
@@ -43,23 +44,22 @@ function pegarUsuarios(event){
     var request = new XMLHttpRequest();
     console.log(tokenAut)
 
-    request.open('GET','http://138.197.78.0/users/' + idUsuario, true)
+    request.open(  'DELETE','http://138.197.78.0/users/' + idUsuario, true)
 
     request.setRequestHeader("Authorization", tokenAut);
   
   
     request.onload = function() {
-    var data = JSON.parse(this.response)
+    var data = this.response;
   
     if (request.status == 200) {
-    
-        console.log(data);
-        document.getElementById("linhaUsuario").innerHTML = data.username;
-      
-    } else if(request.status == 403){
-      alert("Não autorizado! Por favor envie seu token de acesso")
+        alert("Usuário exluído com sucesso!")
+    } else if(request.status == 403) {
+      alert("Não autorizado! Envie o token novamente!")
     }else if(request.status == 404){
-      alert("Usuário não encontrado!")
+
+      alert("Usuário não encontrado! Verifique o ID digitado!")
+
     }
 
   }

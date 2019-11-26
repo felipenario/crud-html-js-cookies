@@ -74,7 +74,7 @@ function pegarUsuarios(event){
         addRow('my-table', usuarios.username);
       })
     } else {
-      console.log('error')
+      alert("Não autorizado! Por favor envie seu token de acesso")
     }
 
   }
