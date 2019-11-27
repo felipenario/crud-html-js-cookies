@@ -1,4 +1,3 @@
-
 cadastroUser.addEventListener("submit", cadastrarUsuario);
 
 
@@ -29,21 +28,15 @@ function cadastrarUsuario(event) {
             }
         })
         .then(
-            
+
             resultado => {
-                if(resultado.status == 200){
+                if (resultado.status == 200) {
                     alert("Usuario criado com sucesso!");
                     window.location.href = "index.html";
-                }else if(resultado.status == 400){
+                } else if (resultado.status == 400) {
                     alert("Username já existente!");
                 }
             }
-
-            //resultado => {
-            //console.log("header", resultado.headers)
-            //console.log("resultado", resultado)
-            //return resultado.json()
-        //}
         )
         .catch(error => {
             console.log(error);
